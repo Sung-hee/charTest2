@@ -2097,9 +2097,9 @@
             symbols: ["circle", "diamond", "square", "triangle", "triangle-down"],
             lang: {
                 loading: "Loading...",
-                months: "January February March April May June July August September October November December".split(" "),
-                shortMonths: "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" "),
-                weekdays: "Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(" "),
+                months: "1월 2월 3월 4월 5월 6월 7월 8월 9월 10월 11월 12월".split(" "),
+                shortMonths: "1월 2월 3월 4월 5월 6월 7월 8월 9월 10월 11월 12월".split(" "),
+                weekdays: "일요일 월요일 화요일 수요일 목요일 금요일 토요일".split(" "),
                 decimalPoint: ".",
                 numericSymbols: "kMGTPE".split(""),
                 resetZoom: "Reset zoom",
