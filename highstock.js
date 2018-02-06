@@ -2099,7 +2099,7 @@
                 loading: "Loading...",
                 months: "January February March April May June July August September October November December".split(" "),
                 shortMonths: "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" "),
-                weekdays: "일요일 월요일 화요일 수요일 목요일 금요일 토요일".split(" "),
+                weekdays: "Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(" "),
                 decimalPoint: ".",
                 numericSymbols: "kMGTPE".split(""),
                 resetZoom: "Reset zoom",
