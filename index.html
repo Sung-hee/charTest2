@@ -4,7 +4,7 @@
 <!-- <script src="https://code.highcharts.com/stock/highstock.js"></script> -->
 <script src="C:\Users\User\Hee\stockchart\highstock.js"></script>
 <script src="https://code.highcharts.com/stock/modules/drag-panes.js"></script>
-<!-- <script src="https://code.highcharts.com/stock/modules/exporting.js"></script> -->
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/stock/indicators/indicators.js"></script>
 <script src="C:\Users\User\Hee\stockchart\indicators.js"></script>
 <script src="C:\Users\User\Hee\stockchart\indicators10.js"></script>
@@ -14,4 +14,35 @@
 <script src="https://code.highcharts.com/stock/indicators/volume-by-price.js"></script>
 <script src="C:\Users\User\Hee\stockchart\stock.js"></script>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+<div class="btn-group" role="group">
+  <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">Dropdown</button>
+
+  <div class="dropdown-menu" id=aria-labelledby="btnGroupDrop1">
+    <!-- <a class="dropdown-item" id="chart" name="https://www.highcharts.com/samples/data/aapl-ohlcv.json">hi</a> -->
+    <a class="dropdown-item" id="appletest1" name="https://charttest-sungheeek.c9users.io/stock.json" value="test" onclick="chartmenu(this)">test</a>
+    <a class="dropdown-item" id="appletest2" name="https://charttest-sungheeek.c9users.io/stock0.json" value="test1" onclick="chartmenu(this)">test2</a>
+    <a class="dropdown-item" id="appletest3" name="https://charttest-sungheeek.c9users.io/stock1.json" onclick="chartmenu(this)">test3</a>
+    <a class="dropdown-item" id="appletest4" name="https://charttest-sungheeek.c9users.io/stock2.json" onclick="chartmenu(this)">test4</a>
+    <a class="dropdown-item" id="appletest5" href="index.html">Dropdown link</a>
+  </div>
+</div>
+
+<!-- <script type="text/javascript">
+  function chartmenu(){
+    var json = document.getElementsByClassName("dropdown-item").name;
+
+    console.log(json);
+    if(document.getElementById("apple").name){
+      var json = document.getElementById("apple").name
+
+      console.log(json);
+    }
+  }
+</script> -->
 <div id="container" style="height: 500px; min-width: 310px"></div>

@@ -10421,7 +10421,11 @@
             defaultButtons: [{
                 type: "month",
                 count: 1,
-                text: "1m"
+                text: "Day",
+                dataGrouping: {
+                  forced: true,
+                  units: [['day', [1]]]
+                }
             }, {
                 type: "month",
                 count: 3,
