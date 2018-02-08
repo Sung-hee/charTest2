@@ -26,7 +26,7 @@
             linkedTo: void 0,
             params: {
                 index: 0,
-                period: 5
+                period: 'day'
             }
         }, {
             bindTo: {

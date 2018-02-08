@@ -9064,7 +9064,7 @@
         D("ohlc", "column", {
             lineWidth: 1,
             tooltip: {
-                pointFormat: '\x3cspan style\x3d"color:{point.color}"\x3e\u25cf\x3c/span\x3e \x3cb\x3e {series.name}\x3c/b\x3e\x3cbr/\x3eOpen: {point.open}\x3cbr/\x3eHigh: {point.high}\x3cbr/\x3eLow: {point.low}\x3cbr/\x3eClose: {point.close}\x3cbr/\x3e'
+                pointFormat: '\x3cspan style\x3d"color:{point.color}"\x3e\u25cf\x3c/span\x3e \x3cb\x3e {series.name}\x3c/b\x3e\x3cbr/\x3e시가: {point.open}\x3cbr/\x3e고가: {point.high}\x3cbr/\x3e저가: {point.low}\x3cbr/\x3e종가: {point.close}\x3cbr/\x3e'
             },
             threshold: null,
             states: {
@@ -10421,11 +10421,7 @@
             defaultButtons: [{
                 type: "month",
                 count: 1,
-                text: "Day",
-                dataGrouping: {
-                  forced: true,
-                  units: [['day', [1]]]
-                }
+                text: "1m"
             }, {
                 type: "month",
                 count: 3,
