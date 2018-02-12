@@ -20,8 +20,16 @@ function chartmenu(test){
   selected = null;
   console.log(selected);
 }
+// real-time
+// Highcharts.setOptions({
+//     global: {
+//         useUTC: false
+//     }
+// });
+
 function stock(selected){
   var _chart;
+
   console.log(3);
   $.getJSON(selected, function(data) {
 
@@ -62,18 +70,7 @@ function stock(selected){
             navigator: {
               enabled: false
             },
-            legend: { },
-            tooltip: {
-                shared: true,
-                crossHairs: true,
-                useHTML: true
-            },
             yAxis: [{
-                labels: {
-                  formatter: function () {
-                      return (this.value > 0 ? ' + ' : '') + this.value + '%';
-                  }
-                },
                 title: {
                     text: 'OHLC'
                 },
@@ -95,7 +92,9 @@ function stock(selected){
                 offset: 0,
                 lineWidth: 2
             }],
-
+            legend: {
+                enabled: true
+            },
             plotOptions: {
                 candlestick: {
                 lineColor: 'black',
@@ -107,10 +106,16 @@ function stock(selected){
                 series: {
                     dataGrouping: {
                         enabled: true,
+                        showInLegend: true
                         units: [ ['day', [1]] ]
-                    }
+                    },
                 }
             },
+            // real - time
+            // exporting: {
+            //   enabled: false
+            // },
+
             series: [{
                 type: 'candlestick',
                 name: 'AAPL',
@@ -122,33 +127,28 @@ function stock(selected){
                 name: 'Volume',
                 data: volume,
                 yAxis: 1
-            // }, {
-            //     type: 'sma',
-            //     linkedTo: 'aapl',
-            //     // zIndex: 1,
-            //     marker: {
-            //         enabled: false
-            //     }
             }]
         });
-        console.log(_chart);
+        console.log(_chart.id);
     });
-
-
     $('input[name=grouping]').change(function() {
         //http://api.highcharts.com/highstock#plotOptions.series.dataGrouping.units
         var unit = $(this).val();
+        console.log(123123);
 
 		//http://api.highcharts.com/highstock#Series.update
-        _chart.series.forEach(function(ser) {
+        _chart.series.forEach(function(ser, ohlc, volume) {
             ser.update({
                 dataGrouping: {
                     units: [ [unit, [1]] ]
                 }
-            }, true);
+            }, false);
+            console.log(ohlc);
+            console.log(volume);
         });
 
-        _chart.redraw();
+        console.log(unit);
+        _chart.redraw(unit);
         console.log(_chart);
     });
   // $.getJSON(selected, function (data) {
