@@ -21,7 +21,7 @@
         c("sma", "line", {
             name: void 0,
             tooltip: {
-                valueDecimals: 4
+                valueDecimals: 2
             },
             linkedTo: void 0,
             params: {

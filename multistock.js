@@ -1,9 +1,39 @@
-$(function stock(){
+function chartmenu(chart){
+  var selected = "";
+  // var enterprisecode = document.getElementsByClassName("dropdown-item").index;
+  var className = document.getElementsByClassName("dropdown-menu");
+  console.log(className);
+  console.log(selected);
+  console.log(1);
+
+  if(document.getElementsByClassName("dropdown-item")){
+    console.log(2);
+    var companies = document.getElementsByClassName("dropdown-item");
+
+    console.log(companies);
+    var els = Array.prototype.slice.call( document.getElementsByClassName('dropdown-item'), 0 );
+    var companycode = els.indexOf(event.currentTarget);
+    console.log(companycode);
+
+    // console.log(document.getElementsByClassName("dropdown-item").text);
+    // selected = document.getElementById(test.id).name
+    selected = "https://charttest-sungheeek.c9users.io/stock" + companycode + ".json"
+    console.log(selected);
+
+    stock(selected);
+    console.log(4);
+  }
+
+  console.log(5);
+  console.log(selected);
+  selected = null;
+  console.log(selected);
+}
+
+function stock(selected){
   var _chart;
-  var selected = "https://charttest-sungheeek.c9users.io/stock.json";
 
   console.log(3);
-
   $.getJSON(selected, function(data) {
 
         // split the data set into ohlc and volume
@@ -165,4 +195,4 @@ $(function stock(){
         });
         _chart.redraw();
     });
-});
+}
