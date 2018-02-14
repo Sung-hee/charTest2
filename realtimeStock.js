@@ -1,8 +1,12 @@
 $(function stock(){
+  Highcharts.setOptions({
+    global : {
+        useUTC : false
+      }
+  });
   var _chart;
   var selected = "http://61.72.187.6/attn/maker";
 
-  $(document).ready(function() {
     $.getJSON(selected, function(data) {
       // split the data set into ohlc and volume
       var ohlc = [],
@@ -26,10 +30,7 @@ $(function stock(){
       // create the chart
       _chart = new Highcharts.StockChart({
           chart: {
-            renderTo: 'container',
-            events: {
-              load: requestData
-            }
+            renderTo: 'container'
           },
           title: {
             text: 'AAPL Historical'
@@ -85,6 +86,7 @@ $(function stock(){
             },
               // shadow: true
               series: {
+                animation: false,
                   dataGrouping: {
                       enabled: true,
                       units: [ ['day', [1]] ]
@@ -156,54 +158,32 @@ $(function stock(){
       });
       console.log(_chart.id);
     });
-  });
+  $(document).ready(function() {
+    $('input[name=grouping]').change(function() {
+        //http://api.highcharts.com/highstock#plotOptions.series.dataGrouping.units
+        var unit = $(this).val();
 
-  $('input[name=grouping]').change(function() {
-      //http://api.highcharts.com/highstock#plotOptions.series.dataGrouping.units
-      var unit = $(this).val();
-
-  //http://api.highcharts.com/highstock#Series.update
-      _chart.series.forEach(function(ser) {
-          ser.update({
-              dataGrouping: {
-                  units: [ [unit, [1]] ]
-              }
-          }, true);
+    //http://api.highcharts.com/highstock#Series.update
+        _chart.series.forEach(function(ser) {
+            ser.update({
+                dataGrouping: {
+                    units: [ [unit, [1]] ]
+                }
+            }, true);
+        });
+        _chart.redraw();
       });
-      _chart.redraw();
-  });
-  function requestData() {
+    });
     $.ajax({
         url: 'http://61.72.187.6/attn/maker',
         type: "GET",
         dataType: "json",
-        data : {username : "demo"},
+        async: true,
         success: function(data) {
-          var ohlc = [],
-              volume = [],
-              dataLength = data.length;
-
-          for (i = 0; i < dataLength; i++) {
-              ohlc.push([
-                  data[i][0], // the date
-                  data[i][1], // open
-                  data[i][2], // high
-                  data[i][3], // low
-                  data[i][4] // close
-              ]);
-
-              volume.push([
-                  data[i][0], // the date
-                  data[i][5] // the volume
-              ])
-          }
-          _chart.addSeries({
-            name: "APPL",
-            data: ohlc
-          });
-          setTimeout(requestData, 1000);
+          setInterval(function () {
+            stock(_chart.data);
+          },5000)
         },
         cache: false
     });
-}
 });

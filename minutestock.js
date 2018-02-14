@@ -78,6 +78,7 @@ $(function stock(){
               series: {
                   dataGrouping: {
                       enabled: true,
+                      forced: true,
                       units: [ ['minute', [1]] ]
                   },
               }
@@ -113,7 +114,7 @@ $(function stock(){
           series: [{
             type: 'candlestick',
               name: 'AAPL',
-              id: 'appl',
+              id: 'aapl',
               data: ohlc,
               zIndex: 2
             }, {
@@ -121,16 +122,56 @@ $(function stock(){
                   name: 'Volume',
                   data: volume,
                   yAxis: 1
-                }, {
-                    type: 'sma',
-                    linkedTo: 'appl',
-                    zIndex: 1,
-                    marker: {
-                        enabled: false
-                    },
-                    dataGrouping: {
-                      groupPixelWidth: 50
-                    }
+            }, {
+                type: 'sma',
+                linkedTo: 'aapl',
+                zIndex: 1,
+                marker: {
+                    enabled: false
+                },
+                dataGrouping: {
+                  groupPixelWidth: 10
+                }
+              }, {
+                  type: 'sma10',
+                  linkedTo: 'aapl',
+                  zIndex: 1,
+                  marker: {
+                      enabled: false
+                  },
+                  dataGrouping: {
+                    groupPixelWidth: 10
+                  }
+              }, {
+                  type: 'sma20',
+                  linkedTo: 'aapl',
+                  zIndex: 1,
+                  marker: {
+                      enabled: false
+                  },
+                  dataGrouping: {
+                    groupPixelWidth: 10
+                  }
+              }, {
+                  type: 'sma30',
+                  linkedTo: 'aapl',
+                  zIndex: 1,
+                  marker: {
+                      enabled: false
+                  },
+                  dataGrouping: {
+                    groupPixelWidth: 10
+                  }
+              }, {
+                  type: 'sma60',
+                  linkedTo: 'aapl',
+                  zIndex: 1,
+                  marker: {
+                      enabled: false
+                  },
+                  dataGrouping: {
+                    groupPixelWidth: 10
+                  }
           }]
       });
     });
@@ -142,44 +183,48 @@ $(function stock(){
         //
         // }
         if(document.getElementById('5m')){
+          var unit = $(this).val();
           _chart.series.forEach(function(ser) {
               ser.update({
                   dataGrouping: {
                       units: [ [unit, [5]] ]
                   }
-              }, true);
+              }, false);
           });
-          _chart.redraw();
+          // _chart.redraw();
         }
         else if(document.getElementById('10m')){
           _chart.series.forEach(function(ser) {
               ser.update({
                   dataGrouping: {
+                    approximation: sum,
                       units: [ [unit, [10]] ]
                   }
-              }, true);
+              }, false);
           });
-          _chart.redraw();
+          // _chart.redraw();
         }
         else if(document.getElementById('15m')){
           _chart.series.forEach(function(ser) {
               ser.update({
                   dataGrouping: {
+                    approximation: sum,
                       units: [ [unit, [15]] ]
                   }
-              }, true);
+              }, false);
           });
-          _chart.redraw();
+          // _chart.redraw();
         }
         else if(document.getElementById('30m')){
           _chart.series.forEach(function(ser) {
               ser.update({
                   dataGrouping: {
+                    approximation: sum,
                       units: [ [unit, [30]] ]
                   }
-              }, true);
+              }, false);
           });
-          _chart.redraw();
+          // _chart.redraw();
         }
         else {
           _chart.series.forEach(function(ser) {
@@ -187,9 +232,10 @@ $(function stock(){
                   dataGrouping: {
                       units: [ [unit, [1]] ]
                   }
-              }, true);
+              }, false);
           });
-          _chart.redraw();
+          // _chart.redraw();
         }
+        _chart.redraw();
     });
 });
