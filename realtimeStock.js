@@ -8,6 +8,7 @@ $(function stock(){
   var selected = "http://61.72.187.6/attn/maker";
 
     $.getJSON(selected, function(data) {
+
       // split the data set into ohlc and volume
       var ohlc = [],
           volume = [],
@@ -27,10 +28,28 @@ $(function stock(){
               data[i][5] // the volume
           ])
       }
+      console.log(1);
       // create the chart
       _chart = new Highcharts.StockChart({
           chart: {
-            renderTo: 'container'
+            renderTo: 'container',
+            events: {
+              load: function(){
+                $.ajax({
+                    url: 'http://61.72.187.6/attn/maker',
+                    type: "GET",
+                    dataType: "json",
+                    async: false,
+                    success: function(data) {
+                      setInterval(function () {
+                        stock(data[0].data);
+                      },5000)
+                      console.log(2);
+                    },
+                    cache: false
+                });
+              }
+            }
           },
           title: {
             text: 'AAPL Historical'
@@ -156,7 +175,7 @@ $(function stock(){
               }
           }]
       });
-      console.log(_chart.id);
+      console.log(3);
     });
   $(document).ready(function() {
     $('input[name=grouping]').change(function() {
@@ -173,17 +192,5 @@ $(function stock(){
         });
         _chart.redraw();
       });
-    });
-    $.ajax({
-        url: 'http://61.72.187.6/attn/maker',
-        type: "GET",
-        dataType: "json",
-        async: true,
-        success: function(data) {
-          setInterval(function () {
-            stock(_chart.data);
-          },5000)
-        },
-        cache: false
     });
 });
