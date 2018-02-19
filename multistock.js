@@ -148,7 +148,7 @@ function stock(selected){
                   groupPixelWidth: 500
                 }
             }, {
-                type: 'sma20',
+                type: 'sma15',
                 linkedTo: 'aapl',
                 zIndex: 1,
                 marker: {

@@ -18,7 +18,7 @@
             q = c.isArray,
             l = c.addEvent;
         c = c.seriesType;
-        c("sma20", "line", {
+        c("sma15", "line", {
             name: void 0,
             tooltip: {
                 valueDecimals: 4
@@ -26,7 +26,7 @@
             linkedTo: void 0,
             params: {
                 index: 0,
-                period: 20
+                period: 15
             }
         }, {
             bindTo: {

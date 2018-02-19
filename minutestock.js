@@ -143,7 +143,7 @@ $(function stock(){
                     groupPixelWidth: 10
                   }
               }, {
-                  type: 'sma20',
+                  type: 'sma15',
                   linkedTo: 'aapl',
                   zIndex: 1,
                   marker: {
@@ -179,63 +179,18 @@ $(function stock(){
         //http://api.highcharts.com/highstock#plotOptions.series.dataGrouping.units
         var unit = $(this).val();
         console.log(unit);
-        // if(document.getElementsByClassName(btn btn-secondary).name){
-        //
-        // }
-        if(document.getElementById('5m')){
-          var unit = $(this).val();
-          _chart.series.forEach(function(ser) {
+        console.log(typeof(unit));
+
+        _chart.series.forEach(function(ser) {
               ser.update({
                   dataGrouping: {
-                      units: [ [unit, [5]] ]
+                      units: [ ['minute', [unit]] ]
                   }
               }, false);
+              console.log(ser);
           });
+          console.log(_chart.series);
           // _chart.redraw();
-        }
-        else if(document.getElementById('10m')){
-          _chart.series.forEach(function(ser) {
-              ser.update({
-                  dataGrouping: {
-                    approximation: sum,
-                      units: [ [unit, [10]] ]
-                  }
-              }, false);
-          });
-          // _chart.redraw();
-        }
-        else if(document.getElementById('15m')){
-          _chart.series.forEach(function(ser) {
-              ser.update({
-                  dataGrouping: {
-                    approximation: sum,
-                      units: [ [unit, [15]] ]
-                  }
-              }, false);
-          });
-          // _chart.redraw();
-        }
-        else if(document.getElementById('30m')){
-          _chart.series.forEach(function(ser) {
-              ser.update({
-                  dataGrouping: {
-                    approximation: sum,
-                      units: [ [unit, [30]] ]
-                  }
-              }, false);
-          });
-          // _chart.redraw();
-        }
-        else {
-          _chart.series.forEach(function(ser) {
-              ser.update({
-                  dataGrouping: {
-                      units: [ [unit, [1]] ]
-                  }
-              }, false);
-          });
-          // _chart.redraw();
-        }
         _chart.redraw();
     });
 });
