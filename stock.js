@@ -1,6 +1,6 @@
 $(function stock(){
   var _chart;
-  var selected = "http://61.72.187.6/attn/maker";
+  var selected = "https://charttest-sungheeek.c9users.io/stock.json";
 
   $(document).ready(function() {
     $.getJSON(selected, function(data) {
@@ -27,9 +27,9 @@ $(function stock(){
       _chart = new Highcharts.StockChart({
           chart: {
             renderTo: 'container',
-            events: {
-              load: requestData
-            }
+            // events: {
+            //   load: requestData
+            // }
           },
           title: {
             text: 'AAPL Historical'
@@ -172,38 +172,38 @@ $(function stock(){
       });
       _chart.redraw();
   });
-  function requestData() {
-    $.ajax({
-        url: 'http://61.72.187.6/attn/maker',
-        type: "GET",
-        dataType: "json",
-        data : {username : "demo"},
-        success: function(data) {
-          var ohlc = [],
-              volume = [],
-              dataLength = data.length;
-
-          for (i = 0; i < dataLength; i++) {
-              ohlc.push([
-                  data[i][0], // the date
-                  data[i][1], // open
-                  data[i][2], // high
-                  data[i][3], // low
-                  data[i][4] // close
-              ]);
-
-              volume.push([
-                  data[i][0], // the date
-                  data[i][5] // the volume
-              ])
-          }
-          _chart.addSeries({
-            name: "APPL",
-            data: ohlc
-          });
-          setTimeout(requestData, 1000);
-        },
-        cache: false
-    });
-}
+//   function requestData() {
+//     $.ajax({
+//         url: 'http://61.72.187.6/attn/maker',
+//         type: "GET",
+//         dataType: "json",
+//         data : {username : "demo"},
+//         success: function(data) {
+//           var ohlc = [],
+//               volume = [],
+//               dataLength = data.length;
+//
+//           for (i = 0; i < dataLength; i++) {
+//               ohlc.push([
+//                   data[i][0], // the date
+//                   data[i][1], // open
+//                   data[i][2], // high
+//                   data[i][3], // low
+//                   data[i][4] // close
+//               ]);
+//
+//               volume.push([
+//                   data[i][0], // the date
+//                   data[i][5] // the volume
+//               ])
+//           }
+//           _chart.addSeries({
+//             name: "APPL",
+//             data: ohlc
+//           });
+//           setTimeout(requestData, 1000);
+//         },
+//         cache: false
+//     });
+// }
 });

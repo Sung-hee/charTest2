@@ -1,12 +1,28 @@
-$(function stock(){
-  Highcharts.setOptions({
-    global : {
-        useUTC : false
-      }
-  });
   var _chart;
   var selected = "http://61.72.187.6/attn/maker";
 
+  $(function stock(){
+    Highcharts.setOptions({
+      global : {
+          useUTC : false
+        }
+    });
+    function requestData(){
+      setInterval(function () {
+        $.ajax({
+            url: 'http://61.72.187.6/attn/maker',
+            type: "GET",
+            dataType: "json",
+            async: false,
+            success: function(data) {
+              _chart.series[0].setData(data);
+              console.log(data);
+            },
+            cache: false
+        });
+        console.log("ajax 호출");
+      },5000)
+    }
     $.getJSON(selected, function(data) {
 
       // split the data set into ohlc and volume
@@ -28,31 +44,18 @@ $(function stock(){
               data[i][5] // the volume
           ])
       }
-      console.log(1);
+      console.log("차트 데이터 저장");
       // create the chart
+      // _chart = new Highcharts.StockChart({
       _chart = new Highcharts.StockChart({
           chart: {
             renderTo: 'container',
             events: {
-              load: function(){
-                $.ajax({
-                    url: 'http://61.72.187.6/attn/maker',
-                    type: "GET",
-                    dataType: "json",
-                    async: false,
-                    success: function(data) {
-                      setInterval(function () {
-                        stock(data[0].data);
-                      },5000)
-                      console.log(2);
-                    },
-                    cache: false
-                });
-              }
+              load: requestData
             }
           },
           title: {
-            text: 'AAPL Historical'
+            // text: 'AAPL Historical'
           },
           rangeSelector: {
             selected: 4
@@ -65,8 +68,7 @@ $(function stock(){
           },
           xAxis: {
               type: 'datetime',
-              tickPixelInterval: 150,
-              maxZoom: 20 * 1000
+              tickPixelInterval: 150
           },
           yAxis: [{
               title: {
@@ -175,7 +177,7 @@ $(function stock(){
               }
           }]
       });
-      console.log(3);
+      console.log("차트그리기");
     });
   $(document).ready(function() {
     $('input[name=grouping]').change(function() {
