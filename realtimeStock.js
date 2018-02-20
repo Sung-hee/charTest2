@@ -1,5 +1,23 @@
-  var _chart;
-  var selected = "http://61.72.187.6/attn/maker";
+var _chart;
+var selected = "http://61.72.187.6/attn/maker";
+
+// 파라메터 정보가 저장될 오브젝트
+// common.js 같은 모든 페이지에서 로딩되는 js 파일에 넣어두면 됨.
+var getParam = function(key){
+    var _parammap = {};
+    document.location.search.replace(/\??(?:([^=]+)=([^&]*)&?)/g, function () {
+        function decode(s) {
+            return decodeURIComponent(s.split("+").join(" "));
+        }
+
+        _parammap[decode(arguments[1])] = decode(arguments[2]);
+    });
+
+    return _parammap[key];
+};
+
+var companycode = getParam("companycode");
+console.log(companycode);
 
   $(function stock(){
     Highcharts.setOptions({
@@ -10,20 +28,41 @@
     function requestData(){
       setInterval(function () {
         $.ajax({
-            url: 'http://61.72.187.6/attn/maker',
+            url: selected + "?companycode=" + companycode,
             type: "GET",
             dataType: "json",
             async: false,
             success: function(data) {
-              _chart.series[0].setData(data);
+              // split the data set into ohlc and volume
+              var ohlc = [],
+                  volume = [],
+                  dataLength = data.length;
+
+              for (i = 0; i < dataLength; i++) {
+                  ohlc.push([
+                      data[i][0], // the date
+                      data[i][1], // open
+                      data[i][2], // high
+                      data[i][3], // low
+                      data[i][4] // close
+                  ]);
+
+                  volume.push([
+                      data[i][0], // the date
+                      data[i][5] // the volume
+                  ])
+              }
+              _chart.series[0].setData(ohlc);
+              _chart.series[1].setData(volume);
               console.log(data);
+              console.log(selected+"?companycode="+companycode);
             },
             cache: false
         });
         console.log("ajax 호출");
       },5000)
     }
-    $.getJSON(selected, function(data) {
+    $.getJSON(selected + "?companycode=" + companycode, function(data) {
 
       // split the data set into ohlc and volume
       var ohlc = [],
