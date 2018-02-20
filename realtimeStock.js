@@ -214,6 +214,16 @@ console.log(companycode);
               dataGrouping: {
                 groupPixelWidth: 500
               }
+          }, {
+              type: 'goldagg',
+              linkedTo: 'aapl',
+              zIndex: 1,
+              marker: {
+                  enabled: false
+              },
+              dataGrouping: {
+                groupPixelWidth: 500
+              }
           }]
       });
       console.log("차트그리기");

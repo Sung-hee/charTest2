@@ -18,7 +18,7 @@
             q = c.isArray,
             l = c.addEvent;
         c = c.seriesType;
-        c("sma10", "line", {
+        c("goldagg", "line", {
             name: void 0,
             tooltip: {
                 valueDecimals: 4,
@@ -83,7 +83,7 @@
                     g = -1,
                     n;
                 if (a.length < c) return !1;
-                for (q(b[0]) && (g = d.index ? d.index : 0); f < c - 1;) m += 0 > g ? b[f] : b[f][g] , f++;
+                for (q(b[0]) && (g = d.index ? d.index : 0); f < c - 1;) m += 0 > g ? (b[f]) * 0.8 : (b[f][g]) * 0.8 , f++;
                 for (d = f; d < e; d++) m += 0 > g ? b[d] : b[d][g], n = [a[d], m /
                     c
                 ], h.push(n), k.push(n[0]), l.push(n[1]), m -= 0 > g ? (b[d - f]) : (b[d - f][g]);

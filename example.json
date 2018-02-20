@@ -1,0 +1,54 @@
+{
+  "companycode": [
+      {
+        "company": "바오밥1",
+        "suik": "65%",
+        "check": true
+      },
+      {
+        "company": "바오밥2",
+        "suik": "65%",
+        "check": true
+      },
+      {
+        "company": "바오밥3",
+        "suik": "65%",
+        "check": true
+      },
+      {
+        "company": "바오밥4",
+        "suik": "65%",
+        "check": true
+      },
+      {
+        "company": "바오밥5",
+        "suik": "65%",
+        "check": true
+      },
+      {
+        "company": "바오밥6",
+        "suik": "65%",
+        "check": false
+      },
+      {
+        "company": "바오밥7",
+        "suik": "65%",
+        "check": false
+      },
+      {
+        "company": "바오밥8",
+        "suik": "65%",
+        "check": false
+      },
+      {
+        "company": "바오밥9",
+        "suik": "65%",
+        "check": false
+      },
+      {
+        "company": "바오밥10",
+        "suik": "65%",
+        "check": false
+      }
+    ]
+}
