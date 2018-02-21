@@ -24,6 +24,7 @@ $(function stock(){
     }
       // create the chart
       _chart = Highcharts.stockChart('container', {
+
           chart: {
             renderTo: 'container'
           },

@@ -98,6 +98,17 @@ console.log(companycode);
             // text: 'AAPL Historical'
           },
           rangeSelector: {
+            buttonTheme: {
+              fill: 'none',
+              stroke: 'none',
+              'stroke-width': 0,
+              width: 60,
+              height: 30,
+              r: 8,
+              style: {
+                  fontSize: "15px"
+              }
+            },
             selected: 4
           },
           scrollbar : {
@@ -228,10 +239,8 @@ console.log(companycode);
     });
   $(document).ready(function() {
     $('input[name=grouping]').change(function() {
-        //http://api.highcharts.com/highstock#plotOptions.series.dataGrouping.units
         var unit = $(this).val();
 
-    //http://api.highcharts.com/highstock#Series.update
         _chart.series.forEach(function(ser) {
             ser.update({
                 dataGrouping: {
