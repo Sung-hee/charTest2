@@ -40,9 +40,6 @@ $(function stock(){
             enabled: false
           },
           yAxis: [{
-              title: {
-                  text: 'OHLC'
-              },
               height: '60%',
               lineWidth: 2,
               resize: {
@@ -52,9 +49,6 @@ $(function stock(){
               labels: {
                   align: 'right',
                   x: -3
-              },
-              title: {
-                  text: 'Volume'
               },
               top: '65%',
               height: '35%',
@@ -66,6 +60,9 @@ $(function stock(){
           },
           credits: {
               enabled: false
+          },
+          exporting: {
+                   enabled: false
           },
           plotOptions: {
               candlestick: {
@@ -119,7 +116,7 @@ $(function stock(){
               zIndex: 2
             }, {
                   type: 'column',
-                  name: 'Volume',
+                  name: '거래량',
                   data: volume,
                   yAxis: 1
             }, {

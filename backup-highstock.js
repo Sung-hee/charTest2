@@ -9064,9 +9064,8 @@
         D("ohlc", "column", {
             lineWidth: 1,
             tooltip: {
-                pointFormat: '\x3cspan style\x3d"color:{point.color}"/span\x3e \x3c/b\x3e\x3cbr/\x3e시가: \x3cb\x3e{point.open}\x3cbr/\x3e고가: \x3cb\x3e{point.high}\x3cbr/\x3e저가: \x3cb\x3e{point.low}\x3cbr/\x3e종가: \x3cb\x3e{point.close}\x3cbr/\x3e'
+                pointFormat: '\x3cspan style\x3d"color:{point.color}"/span\x3e \x3cb\x3e {series.name}\x3c/b\x3e\x3cbr/\x3e시가: {point.open}\x3cbr/\x3e고가: {point.high}\x3cbr/\x3e저가: {point.low}\x3cbr/\x3e종가: {point.close}\x3cbr/\x3e'
             },
-                                                                                                                                                                // \x3cb\x3e{point.y}\x3c/b\x3e\x3cbr/\x3e
             threshold: null,
             states: {
                 hover: {

@@ -87,6 +87,7 @@ console.log(companycode);
       // create the chart
       // _chart = new Highcharts.StockChart({
       _chart = new Highcharts.StockChart({
+
           chart: {
             renderTo: 'container',
             events: {
@@ -110,9 +111,6 @@ console.log(companycode);
               tickPixelInterval: 150
           },
           yAxis: [{
-              title: {
-                  text: 'OHLC'
-              },
               height: '60%',
               lineWidth: 2,
               resize: {
@@ -122,9 +120,6 @@ console.log(companycode);
               labels: {
                   align: 'right',
                   x: -3
-              },
-              title: {
-                  text: 'Volume'
               },
               top: '65%',
               height: '35%',
@@ -136,6 +131,9 @@ console.log(companycode);
           },
           credits: {
               enabled: false
+          },
+          exporting: {
+                   enabled: false
           },
           plotOptions: {
               candlestick: {
@@ -161,7 +159,7 @@ console.log(companycode);
               data: ohlc
           }, {
               type: 'column',
-              name: 'Volume',
+              name: '거래량',
               data: volume,
               yAxis: 1
           }, {
