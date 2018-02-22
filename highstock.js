@@ -2207,13 +2207,13 @@
                 animation: a.svg,
                 borderRadius: 3,
                 dateTimeLabelFormats: {
-                    millisecond: "%A, %b %e, %H:%M:%S.%L",
-                    second: "%A, %b %e, %H:%M:%S",
-                    minute: "%A, %b %e, %H:%M",
-                    hour: "%A, %b %e, %H:%M",
-                    day: "%A, %b %e, %Y",
-                    week: "Week from %A, %b %e, %Y",
-                    month: "%B %Y",
+                    millisecond: "%b %e %A, %H:%M:%S.%L",
+                    second: "%b %e %A, %H:%M:%S",
+                    minute: "%b %e %A, %H:%M",
+                    hour: "%b %e %A, %H:%M",
+                    day: "%Y, %b %e, %A",
+                    week: "%Y, %b %e, %A",
+                    month: "%Y %B",
                     year: "%Y"
                 },
                 footerFormat: "",
@@ -2489,9 +2489,9 @@
                     second: "%H:%M:%S",
                     minute: "%H:%M",
                     hour: "%H:%M",
-                    day: "%e. %b",
-                    week: "%e. %b",
-                    month: "%b '%y",
+                    day: "%b %e",
+                    week: "%b %e",
+                    month: "%y %b",
                     year: "%Y"
                 },
                 endOnTick: !1,
@@ -8783,7 +8783,7 @@
             v = g.generatePoints,
             e = {
                 approximation: "average",
-                groupPixelWidth: 2,
+                groupPixelWidth: 5,
                 dateTimeLabelFormats: {
                     millisecond: ["%A, %b %e, %H:%M:%S.%L", "%A, %b %e, %H:%M:%S.%L",
                         "-%H:%M:%S.%L"
@@ -9726,7 +9726,7 @@
                 maskInside: !0,
                 handles: {
                     width: 7,
-                    height: 15,
+                    height: 30,
                     symbols: ["navigator-handle", "navigator-handle"],
                     enabled: !0,
                     lineWidth: 1,
@@ -10422,25 +10422,22 @@
             defaultButtons: [{
                 type: "month",
                 count: 1,
-                text: "1m"
+                text: "1달"
             }, {
                 type: "month",
                 count: 3,
-                text: "3m"
+                text: "3달"
             }, {
                 type: "month",
                 count: 6,
-                text: "6m"
-            }, {
-                type: "ytd",
-                text: "YTD"
+                text: "6달"
             }, {
                 type: "year",
                 count: 1,
-                text: "1y"
+                text: "1년"
             }, {
                 type: "all",
-                text: "All"
+                text: "전체"
             }],
             init: function(a) {
                 var b = this,
@@ -11095,7 +11092,7 @@
                     textAlign: "center"
                 }, f.style)));
                 h ? (p = u ? c.plotX + e : b.chartX, l += d ? 0 : this.height) : (p = d ? this.width + e : 0, l = u ? c.plotY + l : b.chartY);
-                q || f.formatter || (this.isDatetimeAxis && (t = "%b %d, %Y"), q = "{value" + (t ? ":" + t : "") + "}");
+                q || f.formatter || (this.isDatetimeAxis && (t = "%Y %b %d"), q = "{value" + (t ? ":" + t : "") + "}");
                 b = u ? c[this.isXAxis ? "x" : "y"] : this.toValue(h ? b.chartX : b.chartY);
                 m.attr({
                     text: q ? r(q, {

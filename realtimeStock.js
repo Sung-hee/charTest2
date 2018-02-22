@@ -109,7 +109,7 @@ console.log(companycode);
                   fontSize: "15px"
               }
             },
-            selected: 4
+            selected: 1
           },
           scrollbar : {
     				enabled: false
@@ -119,6 +119,7 @@ console.log(companycode);
           },
           xAxis: {
               type: 'datetime',
+              height: '90%',
               tickPixelInterval: 150
           },
           yAxis: [{
@@ -133,7 +134,7 @@ console.log(companycode);
                   x: -3
               },
               top: '65%',
-              height: '35%',
+              height: '25%',
               offset: 0,
               lineWidth: 2
           }],
