@@ -22,13 +22,13 @@
 
 <div class="btn-group" role="group" style="width:100%; margin: 0;">
   <div class="btn-group btn-group-toggle" data-toggle="radio" style="width:100%;">
-    <label class="btn btn-secondary" style="width: 150">
+    <label class="btn btn-secondary" style="width: 100%">
         <input type="radio" name="grouping" value="day"/> 일봉
     </label>
-    <label class="btn btn-secondary" style="width: 150">
+    <label class="btn btn-secondary" style="width: 100%">
         <input type="radio" name="grouping" value="week"/> 주봉
     </label>
-    <label class="btn btn-secondary" style="width: 150">
+    <label class="btn btn-secondary" style="width: 100%">
         <input type="radio" name="grouping" value="month" /> 월봉
     </label>
   </div>
@@ -43,5 +43,8 @@
   <a class="dropdown-item" onclick="chartmenu(this)">test4</a>
   <a class="dropdown-item" href="index.html">Dropdown link</a>
 </div> -->
-<div id="container" style="height: 500px; min-width: 100%; margin:0;"></div>
+<div id="container" style="width:100%; height: 500px; min-width: 100%; margin:0;"></div>
 </html>
+<script>
+  var height = $(window).height()*0.888;
+</script>

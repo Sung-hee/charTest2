@@ -145,7 +145,7 @@ console.log(companycode);
               enabled: false
           },
           exporting: {
-                   enabled: false
+               enabled: false
           },
           plotOptions: {
               candlestick: {
