@@ -2093,7 +2093,7 @@
         var C = a.color,
             G = a.merge;
         a.defaultOptions = {
-            colors: "#0000FF #FFC000 #90ed7d #f7a35c #8085e9 #f15c80 #e4d354 #2b908f #f45b5b #91e8e1".split(" "),
+            colors: "#0000FF #FF0000 #90ed7d #f7a35c #8085e9 #f15c80 #e4d354 #2b908f #f45b5b #91e8e1".split(" "),
             symbols: ["circle", "diamond", "square", "triangle", "triangle-down"],
             lang: {
                 loading: "Loading...",
@@ -2221,7 +2221,7 @@
                 snap: a.isTouchDevice ? 25 : 10,
                 backgroundColor: C("#f7f7f7").setOpacity(.85).get(),
                 borderWidth: 1,
-                headerFormat: '\x3cspan style\x3d"font-size: 10px;"\x3e{point.key}\x3c/span\x3e\x3cbr/\x3e',
+                headerFormat: '\x3cspan style\x3d"font-size: 10px; "\x3e{point.key}\x3c/span\x3e\x3cbr/\x3e',
                 pointFormat: '\x3cspan style\x3d"color:{point.color}"\x3e\u25cf\x3c/span\x3e {series.name}: \x3cb\x3e{point.y}\x3c/b\x3e\x3cbr/\x3e',
                 shadow: !0,
                 style: {

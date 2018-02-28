@@ -34,6 +34,7 @@ console.log(companycode);
             async: false,
             success: function(data) {
               // split the data set into ohlc and volume
+              var volumeColor = '';
               var ohlc = [],
                   volume = [],
                   dataLength = data.length;
@@ -46,11 +47,27 @@ console.log(companycode);
                       data[i][3], // low
                       data[i][4] // close
                   ]);
-
-                  volume.push([
-                      data[i][0], // the date
-                      data[i][5] // the volume
-                  ])
+                  // if (i==0) {
+                  //   volumeColor = '#CCCCCC';
+                  // }
+                  // else {
+                    if (data[i][5] >= data[i-1][5]) {
+                      volumeColor = '#FF0000';
+                    }
+                    else {
+                      volumeColor = '#0000FF';
+                    }
+                  // }
+                    volume.push({
+                    x: data[i][0], // the date
+                    y: data[i][5],
+                    color: volumeColor
+                  });
+                    console.log(volume);
+                  // volume.push([
+                  //     data[i][0], // the date
+                  //     data[i][5], // the volume
+                  // ])
               }
               _chart.series[0].setData(ohlc);
               _chart.series[1].setData(volume);
@@ -65,8 +82,10 @@ console.log(companycode);
     $.getJSON(selected + "?companycode=" + companycode, function(data) {
 
       // split the data set into ohlc and volume
+      var volumeColor = '';
       var ohlc = [],
           volume = [],
+          volumeColor = '',
           dataLength = data.length;
 
       for (i = 0; i < dataLength; i++) {
@@ -77,11 +96,32 @@ console.log(companycode);
               data[i][3], // low
               data[i][4] // close
           ]);
-
-          volume.push([
-              data[i][0], // the date
-              data[i][5] // the volume
-          ])
+          if (i==0) {
+            volumeColor = '#CCCCCC';
+          }
+          else {
+            if (data[i][5] >= data[i-1][5]) {
+              volumeColor = '#FF0000';
+            }
+            else {
+              volumeColor = '#0000FF';
+            }
+          }
+            volume.push({
+            x: data[i][0], // the date
+            y: data[i][5],
+            color: volumeColor
+            });
+            console.log(volume);
+          // volume.push([
+          //     data[i][0], // the date
+          //     data[i][5], // the volume
+          // ]);
+          // volume.push({
+          //   'x': data[i][0],
+          //   'y': data[i][5],
+          //   'color': colors[Math.floor(Math.random() * 2)+1]
+          // });
       }
       console.log("차트 데이터 저장");
       // create the chart
@@ -98,14 +138,18 @@ console.log(companycode);
             // text: 'AAPL Historical'
           },
           rangeSelector: {
-            inputEnabled: false,
-            labelStyle: {
-                visibility: 'hidden'
-            },
             buttonTheme: {
-              visibility: 'hidden'
+              fill: 'none',
+              stroke: 'none',
+              'stroke-width': 0,
+              width: 60,
+              height: 30,
+              r: 8,
+              style: {
+                  fontSize: "15px"
+              }
             },
-            selected: 1
+            selected: 0
           },
           scrollbar : {
     				enabled: false
@@ -113,12 +157,9 @@ console.log(companycode);
           navigator: {
             enabled: false
           },
-          tooltip:{
-            shared: true
-          },
           xAxis: {
               type: 'datetime',
-              height: '90%',
+              height: '80%',
               tickPixelInterval: 150
           },
           yAxis: [{
@@ -133,7 +174,7 @@ console.log(companycode);
                   x: -3
               },
               top: '65%',
-              height: '25%',
+              height: '15%',
               offset: 0,
               lineWidth: 2
           }],
@@ -146,9 +187,6 @@ console.log(companycode);
           exporting: {
                enabled: false
           },
-          tooltip: {
-            enabled: false
-          },
           plotOptions: {
               candlestick: {
               lineColor: 'black',
@@ -156,39 +194,42 @@ console.log(companycode);
               upColor: 'red',
               upLineColor: 'black'
             },
+            // column: {
+            //   colorByPoint: true
+            // },
               // shadow: true
               series: {
-                point: {
-                    events: {
-                        mouseOver: function () {
-                            var chart = this.series.chart;
-                            if (!chart.lbl) {
-                                chart.lbl = chart.renderer.label('')
-                                    .attr({
-                                        padding: 10,
-                                        r: 10,
-                                        fill: Highcharts.getOptions().colors[1]
-                                    })
-                                    .css({
-                                        color: '#FFFFFF'
-                                    })
-                                    .add();
-                            }
-                            chart.lbl
-                                .show()
-                                .attr({
-                                    text: '시가: ' + this.open + ', 고가: ' + this.high + '저가: ' + this.low + ', 종가: ' + this.close 
-                                });
-                        }
-                    }
-                },
-                events: {
-                    mouseOut: function () {
-                        if (this.chart.lbl) {
-                            this.chart.lbl.hide();
-                        }
-                    }
-                },
+                // point: {
+                //     events: {
+                //         mouseOver: function () {
+                //             var chart = this.series.chart;
+                //             if (!chart.lbl) {
+                //                 chart.lbl = chart.renderer.label('')
+                //                     .attr({
+                //                         padding: 10,
+                //                         r: 10,
+                //                         fill: Highcharts.getOptions().colors[1]
+                //                     })
+                //                     .css({
+                //                         color: '#FFFFFF'
+                //                     })
+                //                     .add();
+                //             }
+                //             chart.lbl
+                //                 .show()
+                //                 .attr({
+                //                     text: '시가: ' + this.open + ', 고가: ' + this.high + '저가: ' + this.low + ', 종가: ' + this.close
+                //                 });
+                //         }
+                //     }
+                // },
+                // events: {
+                //     mouseOut: function () {
+                //         if (this.chart.lbl) {
+                //             this.chart.lbl.hide();
+                //         }
+                //     }
+                // },
                 animation: false,
                   dataGrouping: {
                       enabled: true,
@@ -206,57 +247,61 @@ console.log(companycode);
               type: 'column',
               name: '거래량',
               data: volume,
-              yAxis: 1
-          // }, {
-          //     type: 'sma',
-          //     linkedTo: 'aapl',
-          //     zIndex: 1,
-          //     marker: {
-          //         enabled: false
-          //     },
-          //     dataGrouping: {
-          //       groupPixelWidth: 500
-          //     },
-          // }, {
-          //     type: 'sma10',
-          //     linkedTo: 'aapl',
-          //     zIndex: 1,
-          //     marker: {
-          //         enabled: false
-          //     },
-          //     dataGrouping: {
-          //       groupPixelWidth: 500
-          //     }
-          // }, {
-          //     type: 'sma15',
-          //     linkedTo: 'aapl',
-          //     zIndex: 1,
-          //     marker: {
-          //         enabled: false
-          //     },
-          //     dataGrouping: {
-          //       groupPixelWidth: 500
-          //     }
-          // }, {
-          //     type: 'sma30',
-          //     linkedTo: 'aapl',
-          //     zIndex: 1,
-          //     marker: {
-          //         enabled: false
-          //     },
-          //     dataGrouping: {
-          //       groupPixelWidth: 500
-          //     }
-          // }, {
-          //     type: 'sma60',
-          //     linkedTo: 'aapl',
-          //     zIndex: 1,
-          //     marker: {
-          //         enabled: false
-          //     },
-          //     dataGrouping: {
-          //       groupPixelWidth: 500
-          //     }
+              yAxis: 1,
+              turboThreshold: Number.MAX_VALUE,
+              dataGrouping: {
+                      enabled: false
+              }
+          }, {
+              type: 'sma',
+              linkedTo: 'aapl',
+              zIndex: 1,
+              marker: {
+                  enabled: false
+              },
+              dataGrouping: {
+                groupPixelWidth: 500
+              },
+          }, {
+              type: 'sma10',
+              linkedTo: 'aapl',
+              zIndex: 1,
+              marker: {
+                  enabled: false
+              },
+              dataGrouping: {
+                groupPixelWidth: 500
+              }
+          }, {
+              type: 'sma15',
+              linkedTo: 'aapl',
+              zIndex: 1,
+              marker: {
+                  enabled: false
+              },
+              dataGrouping: {
+                groupPixelWidth: 500
+              }
+          }, {
+              type: 'sma30',
+              linkedTo: 'aapl',
+              zIndex: 1,
+              marker: {
+                  enabled: false
+              },
+              dataGrouping: {
+                groupPixelWidth: 500
+              }
+          }, {
+              type: 'sma60',
+              linkedTo: 'aapl',
+              zIndex: 1,
+              marker: {
+                  enabled: false
+              },
+              dataGrouping: {
+                groupPixelWidth: 500
+              }
           }, {
               type: 'goldagg',
               linkedTo: 'aapl',
