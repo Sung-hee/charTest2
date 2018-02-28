@@ -98,16 +98,12 @@ console.log(companycode);
             // text: 'AAPL Historical'
           },
           rangeSelector: {
+            inputEnabled: false,
+            labelStyle: {
+                visibility: 'hidden'
+            },
             buttonTheme: {
-              fill: 'none',
-              stroke: 'none',
-              'stroke-width': 0,
-              width: 60,
-              height: 30,
-              r: 8,
-              style: {
-                  fontSize: "15px"
-              }
+              visibility: 'hidden'
             },
             selected: 1
           },
@@ -116,6 +112,9 @@ console.log(companycode);
     			},
           navigator: {
             enabled: false
+          },
+          tooltip:{
+            shared: true
           },
           xAxis: {
               type: 'datetime',
@@ -147,6 +146,9 @@ console.log(companycode);
           exporting: {
                enabled: false
           },
+          tooltip: {
+            enabled: false
+          },
           plotOptions: {
               candlestick: {
               lineColor: 'black',
@@ -156,6 +158,37 @@ console.log(companycode);
             },
               // shadow: true
               series: {
+                point: {
+                    events: {
+                        mouseOver: function () {
+                            var chart = this.series.chart;
+                            if (!chart.lbl) {
+                                chart.lbl = chart.renderer.label('')
+                                    .attr({
+                                        padding: 10,
+                                        r: 10,
+                                        fill: Highcharts.getOptions().colors[1]
+                                    })
+                                    .css({
+                                        color: '#FFFFFF'
+                                    })
+                                    .add();
+                            }
+                            chart.lbl
+                                .show()
+                                .attr({
+                                    text: '시가: ' + this.open + ', 고가: ' + this.high + '저가: ' + this.low + ', 종가: ' + this.close 
+                                });
+                        }
+                    }
+                },
+                events: {
+                    mouseOut: function () {
+                        if (this.chart.lbl) {
+                            this.chart.lbl.hide();
+                        }
+                    }
+                },
                 animation: false,
                   dataGrouping: {
                       enabled: true,
@@ -174,56 +207,56 @@ console.log(companycode);
               name: '거래량',
               data: volume,
               yAxis: 1
-          }, {
-              type: 'sma',
-              linkedTo: 'aapl',
-              zIndex: 1,
-              marker: {
-                  enabled: false
-              },
-              dataGrouping: {
-                groupPixelWidth: 500
-              }
-          }, {
-              type: 'sma10',
-              linkedTo: 'aapl',
-              zIndex: 1,
-              marker: {
-                  enabled: false
-              },
-              dataGrouping: {
-                groupPixelWidth: 500
-              }
-          }, {
-              type: 'sma15',
-              linkedTo: 'aapl',
-              zIndex: 1,
-              marker: {
-                  enabled: false
-              },
-              dataGrouping: {
-                groupPixelWidth: 500
-              }
-          }, {
-              type: 'sma30',
-              linkedTo: 'aapl',
-              zIndex: 1,
-              marker: {
-                  enabled: false
-              },
-              dataGrouping: {
-                groupPixelWidth: 500
-              }
-          }, {
-              type: 'sma60',
-              linkedTo: 'aapl',
-              zIndex: 1,
-              marker: {
-                  enabled: false
-              },
-              dataGrouping: {
-                groupPixelWidth: 500
-              }
+          // }, {
+          //     type: 'sma',
+          //     linkedTo: 'aapl',
+          //     zIndex: 1,
+          //     marker: {
+          //         enabled: false
+          //     },
+          //     dataGrouping: {
+          //       groupPixelWidth: 500
+          //     },
+          // }, {
+          //     type: 'sma10',
+          //     linkedTo: 'aapl',
+          //     zIndex: 1,
+          //     marker: {
+          //         enabled: false
+          //     },
+          //     dataGrouping: {
+          //       groupPixelWidth: 500
+          //     }
+          // }, {
+          //     type: 'sma15',
+          //     linkedTo: 'aapl',
+          //     zIndex: 1,
+          //     marker: {
+          //         enabled: false
+          //     },
+          //     dataGrouping: {
+          //       groupPixelWidth: 500
+          //     }
+          // }, {
+          //     type: 'sma30',
+          //     linkedTo: 'aapl',
+          //     zIndex: 1,
+          //     marker: {
+          //         enabled: false
+          //     },
+          //     dataGrouping: {
+          //       groupPixelWidth: 500
+          //     }
+          // }, {
+          //     type: 'sma60',
+          //     linkedTo: 'aapl',
+          //     zIndex: 1,
+          //     marker: {
+          //         enabled: false
+          //     },
+          //     dataGrouping: {
+          //       groupPixelWidth: 500
+          //     }
           }, {
               type: 'goldagg',
               linkedTo: 'aapl',

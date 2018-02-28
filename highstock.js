@@ -2221,7 +2221,7 @@
                 snap: a.isTouchDevice ? 25 : 10,
                 backgroundColor: C("#f7f7f7").setOpacity(.85).get(),
                 borderWidth: 1,
-                headerFormat: '\x3cspan style\x3d"font-size: 10px"\x3e{point.key}\x3c/span\x3e\x3cbr/\x3e',
+                headerFormat: '\x3cspan style\x3d"font-size: 10px;"\x3e{point.key}\x3c/span\x3e\x3cbr/\x3e',
                 pointFormat: '\x3cspan style\x3d"color:{point.color}"\x3e\u25cf\x3c/span\x3e {series.name}: \x3cb\x3e{point.y}\x3c/b\x3e\x3cbr/\x3e',
                 shadow: !0,
                 style: {
@@ -7331,7 +7331,7 @@
             },
             tooltip: {
                 headerFormat: '\x3cspan style\x3d"color:{point.color}"\x3e\u25cf\x3c/span\x3e \x3cspan style\x3d"font-size: 0.85em"\x3e {series.name}\x3c/span\x3e\x3cbr/\x3e',
-                pointFormat: "x: \x3cb\x3e{point.x}\x3c/b\x3e\x3cbr/\x3ey: \x3cb\x3e{point.y}\x3c/b\x3e\x3cbr/\x3e"
+                pointFormat: "x: \x3cb\x3e{point.x}\x3c/b\x3e\x3cbr/\x3ey: \x3cb\x3e{point.y}\x3c/b\x3e\x3cbr/\x3e",
             }
         }, {
             sorted: !1,
